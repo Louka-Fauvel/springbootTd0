@@ -1,0 +1,38 @@
+{{> /partials/header }}
+
+<h1>Gestions des items</h1>
+<a href="/items/new" class="ui button">Ajouter élément</a>
+
+<ul>
+{{#items}}
+	<div class="ui segment column">
+		<li class="ui equal width center padded grid" style="list-style-type: none;"><span class="column">{{nom}}</span>
+		<div class="column"><div class="ui yellow disabled rating" data-icon="star" data-rating="{{evaluation}}" data-max-rating="5"></div></div>
+		
+			<div class="column">
+			<a href="/items/inc/{{nom}}" class="circular ui green {{#isMax}} disabled {{/isMax}} icon button">
+				<i class="plus icon"></i>
+			</a>
+			
+			<a href="/items/dec/{{nom}}" class="circular ui purple {{#isMin}} disabled {{/isMin}} icon button">
+				<i class="minus icon"></i>
+			</a>
+			
+			<a href="/items/delete/{{nom}}" class="circular ui red icon button">
+				<i class="trash alternate icon"></i>
+			</a>
+			</div>
+		</li>
+	</div>
+	
+{{/items}}
+</ul>
+
+{{^items}}
+<p>Aucun élément dans la liste</p>
+{{/items}}
+
+{{> /partials/footer }}
+<script type="text/javascript">
+	$('.ui.rating').rating();
+</script>
